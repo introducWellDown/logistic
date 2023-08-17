@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.center-content {
+    text-align: center;
+    flex: 1;
+    background-color: #6462ba;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice-text {
+    font-family: "Noto Sans SC";
+    font-size: 32px;
+    color: #f5f3f5;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.choice-button-1,
+.choice-button-2 {
+    font-family: "Noto Sans SC";
+    font-size: 24px;
+    color: #6462ba;
+    background-color: #f5f3f5;
+    border: 1px solid #6462ba;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 20px 20px;
+    width: 400px;
+    margin-top: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.choice-button-1:hover,
+.choice-button-2:hover {
+    background-color: #ffffffac;
+    color: #6462ba;
+}
+
+.back-link-container {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff; /* Цвет текста */
+    font-weight: bold;
+    background-color: transparent;
+    border: 0px;
+}
+
+.back-link img {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px; 
+    background-color: transparent;
+}
+.back-link img:hover {
+    width: 65px;
+    height: 65px;
+}
+
+

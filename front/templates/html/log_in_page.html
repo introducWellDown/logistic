@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/log_in_page.css">
+    <title>Главная страница</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="center-content">
+                <div class="welcome-text">Добро пожаловать!</div>
+                <div class="list">
+                    <ul>
+                        <li>100% качество</li>
+                        <li>100% удобства</li>
+                        <li>100% прибыли</li>
+                        <!-- Добавьте другие пункты списка по желанию -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right-side">
+            <div class="center-content">
+                <div class="log-in-input">Авторизация<br></div>
+                <form id="login-form" action="/your-backend-endpoint" method="POST">
+                    <div class="input-fields">
+                        <input type="text" name="login" placeholder="Логин"><br>
+                        <input type="password" name="password" placeholder="Пароль">
+                    </div>
+                    <div>
+                        <button class="login-button" type="submit">Войти</button>
+                    </div>
+                </form>
+                <div>
+                    <button id="register-button" class="register-button">Зарегистрироваться</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../static/js/log_in_page.js"></script>
+</body>
+</html>
+

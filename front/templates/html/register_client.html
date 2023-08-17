@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/register_client.css">
+    <title>Регистрация заказчика</title>
+</head>
+<body>
+    <div class="back-link-container">
+        <button id = "back-link" class="back-link">
+            <img src="../../static/resurce/icons8-назад-100.png" >
+        </button>
+    </div>
+    <div class="registration-form">
+        <h1 class="log-in-input">Создание аккаунта заказчика</h1>
+        <form id="registration-form" method="POST">
+            <div class="input-fields">
+                <div class="column">
+                    <label for="last_name">Фамилия:</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="">
+                    <label for="first_name">Имя:</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="">
+                    <label for="second_name">Отчество:</label>
+                    <input type="text" id="second_name" name="second_name" placeholder="">
+                </div>
+                <div class="column">
+                    <label for="email">Почта:</label>
+                    <input type="text" id="email" name="email" placeholder="">
+                    <label for="accountType">Компания:</label>
+                    <select id="accountType" name="accountType">
+                        <option value="Company_1">Компания 1</option>
+                        <option value="Company_2">Компания 2</option>
+                    </select>
+                    <label for="phone">Телефон:</label>
+                    <input type="text" id="phone" name="phone" placeholder="">
+                </div>
+            </div>
+            <div>
+                <button class="login-button" type="submit">Зарегистрироваться</button>
+            </div>
+        </form>
+    </div>
+    <script src="../../static/js/register_client.js"></script> 
+</body>
+</html>
