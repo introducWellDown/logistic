@@ -1,23 +1,26 @@
-from pydantic import BaseModel
+import pydantic as pd
 import random
-import sqlite3
+
 
 # Модель данных для запроса
-class UserData(BaseModel):
-    ID:str
-    password: str
+class UserData(pd.BaseModel):
     last_name: str
     first_name: str
     middle_name: str
-    email: str
+    email: pd.EmailStr
     company: str
     phone: str    
+
+# Класс в котором будет уже все данные по заказчику
+class FullUserData(UserData):
+    id: int
+    password: str
 
 def generate_id():
     seed = list("123456789123456789123456789123456789123456789")
     random.shuffle(seed)
     id = str(''.join([random.choice(seed) for x in range(6)]))
-    return id
+    return int(id)
 
 def generate_password():
     seed = list("123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM")
@@ -25,18 +28,5 @@ def generate_password():
     password = str(''.join([random.choice(seed) for x in range(6)]))
     return password
 
-def is_uniq_id(userID,nameDB):
-    db = sqlite3.connect('database.db')
-    cursor = db.cursor()
-
-    while True:
-        cursor.execute(f'SELECT id FROM {nameDB} WHERE id = ?', (userID,))
-        row = cursor.fetchone()
-
-        if row is None:
-            db.close()
-            return userID, True
-        else:
-            userID = generate_id()
 
     

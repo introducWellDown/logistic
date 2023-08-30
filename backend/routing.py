@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from logic import UserData,generate_id,is_uniq_id,generate_password
-from bd_manager import load_client_to_bd
+import logic as lg
+import bd_manager
 
 app = FastAPI()
 
@@ -19,38 +19,46 @@ templates = Jinja2Templates(directory=templates_dir)
 
 @app.get("/")
 async def log_in_page(request: Request):
-    template = "log_in_page.html"  # Имя вашего HTML файла
+    template = "log_in_page.html"  
     context = {"request": request}
     return templates.TemplateResponse(template, context)
 
 @app.get("/registration-choice")
 async def register_choice_page(request: Request):
-    template = "register_choice.html"  # Имя вашего HTML файла
+    template = "register_choice.html"  
     context = {"request": request}
     return templates.TemplateResponse(template, context)
 
 @app.get("/register-client")
 async def register_client(request: Request):
-    template = "register_client.html"  # Имя вашего HTML файла
+    template = "register_client.html" 
     context = {"request": request}
     return templates.TemplateResponse(template, context)
 
 @app.get("/register-worker")
 async def register_worker(request: Request):
-    template = "register_worker.html"  # Имя вашего HTML файла
+    template = "register_worker.html" 
     context = {"request": request}
     return templates.TemplateResponse(template, context)
 
 # POST
 
 @app.post("/register-user-successful")
-async def register_user(user_data: UserData):
-    
-    user_data.ID = generate_id()
-    _, is_unique = is_uniq_id(user_data.ID,"Users")
-    if is_unique:
-        user_data.ID = str(is_uniq_id(user_data.ID)[0])
-    
-    user_data.password = generate_password()
-    load_client_to_bd(user_data)
-    return {"message": "Registration successful"}
+async def register_user(user_data: lg.UserData):
+    if bd_manager.is_exist_user(user_data) == True:
+        print("Пользователь с таким email уже зарегистрирован.")
+        return {"status":"error"}
+
+    full_user_data = lg.FullUserData(
+        id = lg.generate_id(),
+        password= lg.generate_password(),
+        last_name= user_data.last_name,
+        first_name=user_data.first_name,
+        middle_name=user_data.middle_name,
+        email=user_data.email,
+        company=user_data.company,
+        phone=user_data.phone
+    )
+
+    bd_manager.load_client_to_bd(full_user_data)
+    return {"status":"success","id": full_user_data.id,"password": full_user_data.password}

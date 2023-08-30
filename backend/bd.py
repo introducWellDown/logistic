@@ -15,7 +15,7 @@ cursor.execute('''
 # Создание таблицы Users
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS Users (
-        id TEXT,
+        id INTEGER,
         password TEXT,
         last_name TEXT,
         first_name TEXT,
