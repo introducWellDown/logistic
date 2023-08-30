@@ -12,28 +12,28 @@
             <img src="../../static/resurce/icons8-назад-100.png" >
         </button>
     </div>
-    <div class="registration-form">
+    <div id="registration-form" class="registration-form">
         <h1 class="log-in-input">Создание аккаунта заказчика</h1>
-        <form id="registration-form" method="POST">
+        <form  method="POST">
             <div class="input-fields">
                 <div class="column">
                     <label for="last_name">Фамилия:</label>
-                    <input type="text" id="last_name" name="last_name" placeholder="">
+                    <input type="text" id="last_name" name="last_name" placeholder="" required>
                     <label for="first_name">Имя:</label>
-                    <input type="text" id="first_name" name="first_name" placeholder="">
+                    <input type="text" id="first_name" name="first_name" placeholder="" required>
                     <label for="second_name">Отчество:</label>
-                    <input type="text" id="second_name" name="second_name" placeholder="">
+                    <input type="text" id="second_name" name="second_name" placeholder="" required>
                 </div>
                 <div class="column">
                     <label for="email">Почта:</label>
-                    <input type="text" id="email" name="email" placeholder="">
+                    <input type="email" id="email" name="email" placeholder="" required>
                     <label for="accountType">Компания:</label>
                     <select id="accountType" name="accountType">
                         <option value="Company_1">Компания 1</option>
                         <option value="Company_2">Компания 2</option>
                     </select>
                     <label for="phone">Телефон:</label>
-                    <input type="text" id="phone" name="phone" placeholder="">
+                    <input type="text" id="phone" name="phone" placeholder="" required>
                 </div>
             </div>
             <div>
@@ -41,6 +41,30 @@
             </div>
         </form>
     </div>
+    <div class="container">
+        <div class="center-content hidden">
+            <div class="choice-text big-text">
+                Регистрация успешна!
+            </div>
+            <div class="choice-text small-text">
+                Ваши данные для входа в систему:
+            </div>
+            <div class="data-field">
+                <p class="data-label">ID: <span class="data-value" id="user-id"></span></p>
+            </div>
+            <div class="data-field">
+                <p class="data-label">Пароль: <span class="data-value" id="user-password"></span></p>
+            </div>
+            <div class="choice-text small-text">
+                Сохраните данные для <br>дальнейшей работы.
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="email-exist-error" class = "notification" >
+        Пользователь с таким email уже зарегистрирован.
+    </div>
+    
     <script src="../../static/js/register_client.js"></script> 
 </body>
 </html>

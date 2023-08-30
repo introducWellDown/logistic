@@ -1,10 +1,13 @@
 const backButton = document.getElementById('back-link');
 backButton.addEventListener('click', () => {
-    window.location.href = '/registration-choice';
+        window.location.href = '/registration-choice';
+    
 });
+
 
 // Получение ссылки на форму регистрации
 const registrationForm = document.getElementById('registration-form');
+const successMessage = document.querySelector('.center-content');
 
 // Функция, которая будет вызываться при отправке формы
 function registerUser(event) {
@@ -18,8 +21,6 @@ function registerUser(event) {
     const phone = document.getElementById('phone').value;
 
     const userData = {
-        id: "0", // Это уже строка, так что преобразование не требуется
-        password: "0", // То же самое здесь
         last_name: String(lastName), // Преобразование в строку
         first_name: String(firstName), // Преобразование в строку
         middle_name: String(middleName), // Преобразование в строку
@@ -35,19 +36,51 @@ function registerUser(event) {
         },
         body: JSON.stringify(userData)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-        console.log(data); // Вывод сообщения об успешной регистрации
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+        if (data.status === "success") {
+        registrationForm.style.display = 'none';
+        // Переопределение ссылки для успешного статуса
+        backButton.addEventListener('click', () => {
+            window.location.href = '/';
+        });
+        // Показать блок с успешным сообщением
+        showContainer()
+        // Заполнить ID и пароль пользователя
+        document.getElementById('user-id').textContent = data.id; // Замените на актуальный ключ в объекте data
+        document.getElementById('user-password').textContent = data.password; // Замените на актуальный ключ в объекте data
+        } else if (data.status === "error") {
+            // Отображение окошка с сообщением об ошибке
+            showError();
+        } else {
+            // Другие обработки статусов, если необходимо
+        }
     });
+
 }
+
+
+// Отображение контейнера
+function showContainer() {
+    successMessage.classList.remove('hidden');
+}
+
+// Скрытие контейнера
+function hideContainer() {
+    successMessage.classList.add('hidden');
+}
+
+function showError() {
+    const notification = document.getElementById('email-exist-error');
+    notification.style.display = 'block'; // Показываем элемент
+    notification.style.opacity = '1'; // Устанавливаем полную прозрачность
+
+    setTimeout(() => {
+        notification.style.opacity = '0'; // Устанавливаем прозрачность 0 через 5 секунд
+    }, 2000); // 5000 миллисекунд = 5 секунд
+}
+
+
 
 // Привязка функции к событию отправки формы
 registrationForm.addEventListener('submit', registerUser);
