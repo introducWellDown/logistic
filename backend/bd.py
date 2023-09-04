@@ -7,8 +7,8 @@ cursor = conn.cursor()
 # Создание таблицы Companies
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS Companies (
-        code TEXT ,
-        name TEXT
+        name TEXT ,
+        code TEXT
     )
 ''')
 
@@ -26,15 +26,17 @@ cursor.execute('''
     )
 ''')
 
-# Создание таблицы Performers
+# Создание таблицы Worker
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS Performers (
-        id TEXT,
+    CREATE TABLE IF NOT EXISTS Worker (
+        id INTEGER,
+        password TEXT,
         last_name TEXT,
         first_name TEXT,
+        phone TEXT,
         email TEXT,
         company TEXT,
-        company_code TEXT REFERENCES Companies(code)
+        company_code TEXT
     )
 ''')
 

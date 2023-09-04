@@ -12,9 +12,9 @@
             <img src="../../static/resurce/icons8-назад-100.png" >
         </button>
     </div>
-    <div class="registration-form">
+    <div id="registration-form" class="registration-form">
         <h1 class="log-in-input">Создание аккаунта исполнителя</h1>
-        <form id="registration-form" action="/your-backend-endpoint" method="POST">
+        <form  method="POST">
             <div class="input-fields">
                 <div class="column">
                     <label for="last_name">Фамилия:</label>
@@ -41,6 +41,33 @@
             </div>
         </form>
     </div>
+    <div class="container">
+        <div class="center-content hidden">
+            <div class="choice-text big-text">
+                Регистрация успешна!
+            </div>
+            <div class="choice-text small-text">
+                Ваши данные для входа в систему:
+            </div>
+            <div class="data-field">
+                <p class="data-label">ID: <span class="data-value" id="worker-id"></span></p>
+            </div>
+            <div class="data-field">
+                <p class="data-label">Пароль: <span class="data-value" id="worker-password"></span></p>
+            </div>
+            <div class="choice-text small-text">
+                Сохраните данные для <br>дальнейшей работы.
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="email-exist-error" class = "notification" >
+        Пользователь с таким email уже зарегистрирован.
+    </div>
+    <div id="code-none-error" class = "notification" >
+        Пользователь с таким email уже зарегистрирован.
+    </div>
+
     <script src="../../static/js/register_worker.js"></script> 
 </body>
 </html>

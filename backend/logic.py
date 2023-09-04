@@ -16,6 +16,23 @@ class FullUserData(UserData):
     id: int
     password: str
 
+# Модель данных для запроса
+class WorkerData(pd.BaseModel):
+    last_name: str
+    first_name: str
+    phone: str
+    email: pd.EmailStr
+    company: str
+    company_code: str
+        
+
+# Класс в котором будет уже все данные по Исполнителю
+class FullWorkerData(WorkerData):
+    id: int
+    password: str
+
+
+
 def generate_id():
     seed = list("123456789123456789123456789123456789123456789")
     random.shuffle(seed)

@@ -19,6 +19,7 @@ body {
     font-size: 48px;
     font-weight: bold;
     margin-bottom: 10px;
+    text-align: center; /* Выравнивание заголовка по центру */
 }
 
 .input-fields {
@@ -50,7 +51,7 @@ body {
     margin-bottom: 10px;
     border: 1px solid #f5f3f5;
     border-radius: 5px;
-    font-weight: bold;
+    font-weight: bold; 
 }
 
 .login-button {
@@ -94,4 +95,76 @@ body {
 .back-link img:hover {
     width: 65px;
     height: 65px;
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: rgb(199, 15, 15);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    display: none; /* Начальное состояние: невидимый */
+    opacity: 0; /* Прозрачность 0 */
+    transition: opacity 0.5s; /* Анимация изменения прозрачности */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.center-content {
+    text-align: center;
+}
+
+.choice-text {
+    font-family: "Noto Sans SC";
+    font-weight: bold;
+}
+
+.big-text {
+    font-size: 36px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.small-text {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.data-field {
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    padding-top: 0px; /* Паддинг сверху */
+    padding-bottom: 0px; /* Паддинг снизу */
+    padding-left: 10px; /* Паддинг слева */
+    padding-right: 10px; /* Паддинг справа */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.data-label {
+    font-size: 24px;
+    color: #6462ba;
+    font-weight: bold;
+}
+
+.data-value {
+    font-size: 24px;
+    color: #6462ba;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
 }

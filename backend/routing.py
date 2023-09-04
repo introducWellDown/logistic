@@ -45,7 +45,7 @@ async def register_worker(request: Request):
 
 @app.post("/register-user-successful")
 async def register_user(user_data: lg.UserData):
-    if bd_manager.is_exist_user(user_data) == True:
+    if bd_manager.is_exist(user_data,"Users") == True:
         print("Пользователь с таким email уже зарегистрирован.")
         return {"status":"error"}
 
@@ -62,3 +62,27 @@ async def register_user(user_data: lg.UserData):
 
     bd_manager.load_client_to_bd(full_user_data)
     return {"status":"success","id": full_user_data.id,"password": full_user_data.password}
+
+@app.post("/register-worker-successful")
+async def register_worker(worker_data: lg.WorkerData):
+    if bd_manager.is_exist(worker_data,"Worker") == True:
+        print("Исполнитель с таким email уже зарегистрирован.")
+        return {"status":"error"}
+
+    if bd_manager.is_exist_company_code(worker_data) == False:
+        print("Код не соответствует компании.")
+        return {"status":"error_none_company_code"}
+    
+    full_woker_data = lg.FullWorkerData(
+        id = lg.generate_id(),
+        password= lg.generate_password(),
+        last_name= worker_data.last_name,
+        first_name=worker_data.first_name,
+        phone=worker_data.phone,
+        email=worker_data.email,
+        company=worker_data.company,
+        company_code=worker_data.company_code
+    )
+    
+    bd_manager.load_worker_to_bd(full_woker_data)
+    return {"status":"success","id": full_woker_data.id,"password": full_woker_data.password}
