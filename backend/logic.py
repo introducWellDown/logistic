@@ -31,6 +31,9 @@ class FullWorkerData(WorkerData):
     id: int
     password: str
 
+class LoginData(pd.BaseModel):
+    id: int
+    password: str
 
 
 def generate_id():

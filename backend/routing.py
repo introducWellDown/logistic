@@ -41,6 +41,18 @@ async def register_worker(request: Request):
     context = {"request": request}
     return templates.TemplateResponse(template, context)
 
+@app.get("/worker-main-page")
+async def worker_main_page(request: Request):
+    template = "worker_main_page.html" 
+    context = {"request": request}
+    return templates.TemplateResponse(template, context)
+
+@app.get("/client-main-page")
+async def client_main_page(request: Request):
+    template = "client_main_page.html" 
+    context = {"request": request}
+    return templates.TemplateResponse(template, context)
+
 # POST
 
 @app.post("/register-user-successful")
@@ -86,3 +98,15 @@ async def register_worker(worker_data: lg.WorkerData):
     
     bd_manager.load_worker_to_bd(full_woker_data)
     return {"status":"success","id": full_woker_data.id,"password": full_woker_data.password}
+
+@app.post("/login")
+async def logining(login_data: lg.LoginData):
+    user_control_point = bd_manager.logining(login_data,"Users")
+    worker_control_point = bd_manager.logining(login_data,"Worker")
+    if user_control_point == True:
+        return {"status":"success","person":"Client"}
+    if worker_control_point == True:
+        return {"status":"success","person":"Worker"}
+    if (user_control_point and worker_control_point) == False:
+        print("Дабл фолс,на вебе должна быть ошибка")
+        return {"status":"logining_error"}

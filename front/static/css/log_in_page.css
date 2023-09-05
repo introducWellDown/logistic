@@ -97,3 +97,17 @@
 .register-button:hover {
     background-color: #ffffffac;
 }
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: rgb(199, 15, 15);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    display: none; /* Начальное состояние: невидимый */
+    opacity: 0; /* Прозрачность 0 */
+    transition: opacity 0.5s; /* Анимация изменения прозрачности */
+}

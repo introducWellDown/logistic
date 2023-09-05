@@ -51,8 +51,8 @@ def load_worker_to_bd(worker_data):
 
     connection.close()
 
+# Проверка на существование пользователя по email
 def is_exist(structure,table):
-    # Проверка на существование пользователя по email
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute(f'SELECT * FROM {str(table)} WHERE email = ?', (structure.email,))
@@ -63,13 +63,12 @@ def is_exist(structure,table):
         return True
     else:
         return False
-    
+
+# Выполняем запрос к базе данных, чтобы найти запись с указанным name и code    
 def is_exist_company_code(structure):
     try:
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
-        
-        # Выполняем запрос к базе данных, чтобы найти запись с указанным name и code
         cursor.execute("SELECT * FROM Companies WHERE name = ? AND code = ?", (structure.company, structure.company_code))
         
         existing_company = cursor.fetchone()
@@ -84,25 +83,17 @@ def is_exist_company_code(structure):
         print(f"Ошибка при проверке компании и кода: {e}")
         return False  # В случае ошибки также возвращаем False
            
-    
+# Просмотр таблиц пользователей системы    
 def show_pleer_bd(pleer):
-    # Соединение с базой данных
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-
-    # Выполнение SQL-запроса
     cursor.execute(f'SELECT * FROM {str(pleer)}')
-
-    # Получение результатов запроса
     rows = cursor.fetchall()
-
-    # Закрытие соединения с базой данных
     conn.close()
-
-    # Вывод результатов
     for row in rows:
         print(row)
-        
+
+# Добавление компании и кода компании в систему        
 def add_company_with_code(name, code):
     try:
         conn = sqlite3.connect('database.db')
@@ -116,3 +107,21 @@ def add_company_with_code(name, code):
         print(f"Компания '{name}' с кодом '{code}' успешно добавлена.")
     except sqlite3.Error as e:
         print(f"Ошибка при добавлении компании: {e}")
+        
+def logining(structure,table):
+    try:
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute(f"SELECT * FROM {table} WHERE id = ? AND password = ?", (structure.id, structure.password))
+        loginData = cursor.fetchone()
+        conn.close()
+        
+        if loginData:
+            print(f"Данные находятся в таблице {table} ")
+            return True  
+        else:
+            print(f"Данных нет в таблице {table} ") 
+            return False
+    except sqlite3.Error as e:
+        print(f"Ошибка при проверке таблицы {table} на вход: {e}")
+        return False  # В случае ошибки также возвращаем False

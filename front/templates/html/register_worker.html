@@ -18,22 +18,22 @@
             <div class="input-fields">
                 <div class="column">
                     <label for="last_name">Фамилия:</label>
-                    <input type="text" id="last_name" name="last_name" placeholder="">
+                    <input type="text" id="last_name" name="last_name" placeholder="" required>
                     <label for="first_name">Имя:</label>
-                    <input type="text" id="first_name" name="first_name" placeholder="">
+                    <input type="text" id="first_name" name="first_name" placeholder="" required>
                     <label for="phone">Телефон:</label>
-                    <input type="text" id="phone" name="phone" placeholder="">
+                    <input type="text" id="phone" name="phone" placeholder="" required>
                 </div>
                 <div class="column">
                     <label for="email">Почта:</label>
-                    <input type="text" id="email" name="email" placeholder="">
+                    <input type="text" id="email" name="email" placeholder="" required>
                     <label for="accountType">Компания:</label>
                     <select id="accountType" name="accountType">
                         <option value="Company_1">Компания 1</option>
                         <option value="Company_2">Компания 2</option>
                     </select>
                     <label for="companyCode">Код компании:</label>
-                    <input type="password" id="companyCode" name="companyCode" placeholder="">
+                    <input type="password" id="companyCode" name="companyCode" placeholder="" required>
                 </div>
             </div>
             <div>
@@ -65,7 +65,7 @@
         Пользователь с таким email уже зарегистрирован.
     </div>
     <div id="code-none-error" class = "notification" >
-        Пользователь с таким email уже зарегистрирован.
+        Неверный код компании.
     </div>
 
     <script src="../../static/js/register_worker.js"></script> 

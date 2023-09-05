@@ -16,21 +16,20 @@
                         <li>100% качество</li>
                         <li>100% удобства</li>
                         <li>100% прибыли</li>
-                        <!-- Добавьте другие пункты списка по желанию -->
                     </ul>
                 </div>
             </div>
         </div>
         <div class="right-side">
             <div class="center-content">
-                <div class="log-in-input">Авторизация<br></div>
-                <form id="login-form" action="/your-backend-endpoint" method="POST">
+                <div id="login-form" class="log-in-input">Авторизация<br></div>
+                <form method="POST">
                     <div class="input-fields">
-                        <input type="text" name="login" placeholder="Логин"><br>
-                        <input type="password" name="password" placeholder="Пароль">
+                        <input type="text" id = "id" name="login" placeholder="Логин" required><br>
+                        <input type="password" id = "password" name="password" placeholder="Пароль" required>
                     </div>
                     <div>
-                        <button class="login-button" type="submit">Войти</button>
+                        <button id="login-button" class="login-button" type="submit">Войти</button>
                     </div>
                 </form>
                 <div>
@@ -38,6 +37,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="login-error" class = "notification" >
+        Неверный логин или пароль.
     </div>
     <script src="../../static/js/log_in_page.js"></script>
 </body>
